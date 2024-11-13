@@ -1,6 +1,14 @@
 # Projet
 
+Manipulation de Git
+
 ## Attente du projet
+
+Le dossier img qui contiendra les ressources graphiques de l'application, le
+dossier css qui contiendra la ou les feuilles de style de l'application, le
+dossier js qui contiendra le ou les scripts JS de l'application. Un fichier
+damier.html qui contiendra le code d'une page HTML que vous allez devoir
+réaliser à la prochaine étape.
 
 ## Table des matières
 
@@ -57,32 +65,14 @@
       - [Formatage pour CSS](#formatage-pour-css)
       - [Linter pour CSS](#linter-pour-css)
       - [Documentation pour CSS](#documentation-pour-css)
-    - [SASS](#sass)
-      - [Extensions VS Code pour SASS](#extensions-vs-code-pour-sass)
-      - [Formatage pour SASS](#formatage-pour-sass)
-      - [Linter pour SASS](#linter-pour-sass)
-      - [Automatisation pour SASS](#automatisation-pour-sass)
-      - [Documentation pour SASS](#documentation-pour-sass)
     - [JS](#js)
       - [Extensions VS Code pour JS](#extensions-vs-code-pour-js)
       - [Formatage pour JS](#formatage-pour-js)
       - [Linter pour JS](#linter-pour-js)
       - [Documentation pour JS](#documentation-pour-js)
-    - [TS](#ts)
-      - [Extensions VS Code pour TS](#extensions-vs-code-pour-ts)
-      - [Formatage pour TS](#formatage-pour-ts)
-      - [Linter pour TS](#linter-pour-ts)
-      - [Automatisation pour TS](#automatisation-pour-ts)
-      - [Documentation pour TS](#documentation-pour-ts)
   - [Les frameworks CSS](#les-frameworks-css)
     - [Bootstrap](#bootstrap)
       - [Extensions VS Code pour Bootstrap](#extensions-vs-code-pour-bootstrap)
-    - [Tailwind](#tailwind)
-  - [Les frameworks JS](#les-frameworks-js)
-    - [React](#react)
-      - [Extensions VS Code pour React](#extensions-vs-code-pour-react)
-    - [Angular](#angular)
-    - [VueJS](#vuejs)
 
 ## Les outils
 
@@ -884,112 +874,6 @@ Ajoutez dans le fichier `package.json` :
 Vous pourrez lancer depuis le terminal `npm run document-css` pour documenter
 les fichiers CSS du projet.
 
-### SASS
-
-#### Extensions VS Code pour SASS
-
-- Live Sass Compiler
-- SCSS IntelliSense
-- vscode-sassdoc
-- SCSS Formatter
-
-Dans le fichier `.vscode/settings.json`, ajoutez :
-
-```json
-{
-  "[scss]": {
-    "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
-  },
-  "liveSassCompile.settings.autoprefix": true,
-  "liveSassCompile.settings.formats": [
-    {
-      "extensionName": ".css",
-      "format": "compressed",
-      "savePath": "/dist/css/",
-      "savePathReplacementPairs": null
-    }
-  ],
-  "liveSassCompile.settings.showOutputWindowOn": "Warning",
-  "liveSassCompile.settings.useNewCompiler": true,
-  "liveSassCompile.settings.watchOnLaunch": true
-}
-```
-
-#### Formatage pour SASS
-
-Prettier prend en charge SASS.
-
-#### Linter pour SASS
-
-Stylelint prend en charge SASS.
-
-Ajoutez dans le fichier `package.json` :
-
-```json
-{
-  "scripts": {
-    "lint-scss": "npx stylelint **/*.scss --formatter verbose"
-  }
-}
-```
-
-Vous pourrez lancer depuis le terminal `npm run lint-scss` pour vérifier le code
-des fichiers SASS du projet.
-
-#### Automatisation pour SASS
-
-Installez le package `sass` en tapant dans le terminal `npm i -D sass` ou
-`npm install --save-dev sass`.
-
-Ajoutez dans le fichier `package.json` :
-
-```json
-{
-  "scripts": {
-    "compile-css": "npx sass --style=compressed --watch src/scss:dist/css"
-  }
-}
-```
-
-Vous pourrez lancer depuis le terminal `npm run compile-css` pour compiler le
-code des fichiers SASS du projet en fichiers CSS. L'option `--watch` surveille
-les modifications et recompile à la volée.
-
-ATTENTION : il ne faut pas activer l'extension Live Sass Compiler et lancer
-`npm run compile-css` en même temps.
-
-#### Documentation pour SASS
-
-Installez le package `sassdoc` en tapant dans le terminal `npm i -D sassdoc` ou
-`npm install --save-dev sassdoc`.
-
-Le fichier de configuration doit se nommer `.sassdocrc` et être à la racine du
-projet. Un exemple de configuration serait :
-
-```json
-{
-  "dest": "./docs/scss/",
-  "strict": true,
-  "verbose": true
-}
-```
-
-L'ensemble des options est disponible sur le
-[site de sassdoc](http://sassdoc.com/configuration/#options).
-
-Ajoutez dans le fichier `package.json` :
-
-```json
-{
-  "scripts": {
-    "document-scss": "npx sassdoc src/scss"
-  }
-}
-```
-
-Vous pourrez lancer depuis le terminal `npm run document-scss` pour documenter
-les fichiers SASS du projet.
-
 ### JS
 
 #### Extensions VS Code pour JS
@@ -1139,140 +1023,6 @@ Ajoutez dans le fichier `package.json` :
 Vous pourrez lancer depuis le terminal `npm run document-js` pour documenter les
 fichiers JS du projet.
 
-### TS
-
-#### Extensions VS Code pour TS
-
-- Auto Import
-
-#### Formatage pour TS
-
-ESLint prend en charge TS.
-
-#### Linter pour TS
-
-ESLint prend en charge TS.
-
-Installez les packages `@typescript-eslint/parser`,
-`@typescript-eslint/eslint-plugin` et `eslint-plugin-tsdoc` en tapant dans le
-terminal
-`npm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-tsdoc`
-ou
-`npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-tsdoc`
-puis modifiez le fichier `.eslintrc` pour avoir une configuration comme :
-
-```json
-{
-  "overrides": [
-    {
-      "files": ["**/*.ts", "**/*.tsx"],
-      "env": { "browser": true, "es2021": true, "node": true },
-      "plugins": ["compat", "@typescript-eslint", "eslint-plugin-tsdoc"],
-      "extends": [
-        "plugin:compat/recommended",
-        "plugin:security/recommended",
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:@typescript-eslint/strict",
-        "standard-with-typescript",
-        "prettier"
-      ],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "ecmaFeatures": { "jsx": true },
-        "ecmaVersion": "latest",
-        "sourceType": "module",
-        "project": "./tsconfig.json"
-      },
-      "rules": {
-        "tsdoc/syntax": "warn"
-      }
-    }
-  ]
-}
-```
-
-Ajoutez dans le fichier `package.json` :
-
-```json
-{
-  "scripts": {
-    "lint-ts": "npx eslint --fix **/*.ts"
-  }
-}
-```
-
-Vous pourrez lancer depuis le terminal `npm run lint-ts` pour vérifier le code
-des fichiers TS du projet.
-
-#### Automatisation pour TS
-
-Installez les packages `typescript` et `@tsconfig/strictest` en tapant dans le
-terminal `npm i -D typescript @tsconfig/strictest` ou
-`npm install --save-dev typescript @tsconfig/strictest`.
-
-Le fichier de configuration doit se nommer `tsconfig.json` et être à la racine
-du projet. Un exemple de configuration serait :
-
-```json
-{
-  "extends": "@tsconfig/strictest/tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist/js",
-    "rootDir": "src/ts"
-  },
-  "include": ["**/*.ts"]
-}
-```
-
-Ajoutez dans le fichier `package.json` :
-
-```json
-{
-  "scripts": {
-    "compile-js": "npx tsc --watch"
-  }
-}
-```
-
-Vous pourrez lancer depuis le terminal `npm run compile-js` pour compiler le
-code des fichiers TS du projet en fichiers JS. L'option `--watch` surveille les
-modifications et recompile à la volée.
-
-#### Documentation pour TS
-
-Installez le package `typedoc` en tapant dans le terminal `npm i -D typedoc` ou
-`npm install --save-dev typedoc`.
-
-Le fichier de configuration doit se nommer `typedoc.json` et être à la racine du
-projet. Un exemple de configuration serait :
-
-```json
-{
-  "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": ["./src/ts/"],
-  "entryPointStrategy": "expand",
-  "out": "./docs/ts/"
-}
-```
-
-L'ensemble des options est disponible sur le
-[site de typedoc](https://typedoc.org/options/configuration/).
-
-Ajoutez dans le fichier `package.json` :
-
-```json
-{
-  "scripts": {
-    "document-ts": "npx typedoc"
-  }
-}
-```
-
-Vous pourrez lancer depuis le terminal `npm run document-ts` pour documenter les
-fichiers JS du projet.
-
 ## Les frameworks CSS
 
 ### Bootstrap
@@ -1281,35 +1031,3 @@ fichiers JS du projet.
 
 - Bootstrap 5 Icon Snippets
 - Bootstrap 5 Quick Snippets
-
-### Tailwind
-
-## Les frameworks JS
-
-### React
-
-#### Extensions VS Code pour React
-
-### Angular
-
-### VueJS
-
----
-
-TODO gulp grunt tasks.json
-
-TODO compression images
-
-TODO ncu
-
-TODO Autoprefixer
-
-TODO <https://medium.com/@anandkiit94/minifying-typescript-code-d0529189daf0>
-
-TODO compression css sans sass
-
-TODO compression js sans ts
-
-TODO Webpack
-
-TODO Babel
